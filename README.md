@@ -185,12 +185,12 @@ pip install -r requirements.txt
 ```
 This installs everything listed in requirements.txt:
 plaintext
-
+ ```bash
 python-telegram-bot==20.7
 psutil
 requests
 python-dotenv
-
+```
 If requirements.txt doesn’t work, install manually:
  ```bash
 
@@ -289,9 +289,9 @@ Name: Pick anything, like "Eclipse BITZ Bot".
 Username: Must end in "Bot", like @MyEclipseBitzBot.
 
 BotFather will give you a Bot Token, looking like:
-
+ ```bash
 1234567890:ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890
-
+```
 Copy the token and save it somewhere safe (e.g., a text file or password manager).
 
 What this does: Registers your bot with Telegram so it can send and receive messages.
@@ -311,9 +311,9 @@ Start it:
 /start
 ```
 It will reply with your Chat ID, like:
-
+ ```bash
 123456789
-
+```
 Copy the Chat ID and save it.
 
 What this does: Tells the bot who’s allowed to use it, keeping it private.
@@ -333,8 +333,9 @@ bitz account
 ```
 This should show your address, like:
 
+ ```bash
 YourWalletAddress123...
-
+```
 Copy the address and save it.
 
 If bitz isn’t installed yet, skip this and return after Step 9.
@@ -386,20 +387,20 @@ nano .env
 ```
 You’ll see the contents of .env.example:
 plaintext
-
+```bash
 BOT_TOKEN=your_telegram_bot_token
 CHAT_ID=your_telegram_chat_id
 WALLET_ADDRESS=your_wallet_address
 RPC_URL=https://mainnetbeta-rpc.eclipse.xyz
-
+```
 Replace the placeholders with your values, for example:
 plaintext
-
+```bash
 BOT_TOKEN=1234567890:ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890
 CHAT_ID=123456789
 WALLET_ADDRESS=YourWalletAddress123...
 RPC_URL=https://mainnetbeta-rpc.eclipse.xyz
-
+```
 Save and exit:
 Press Ctrl+O, then Enter to save.
 
@@ -442,11 +443,12 @@ Open Telegram, find your bot (e.g., @MyEclipseBitzBot), and send:
 ```
 You should see:
 
+```bash
 Welcome to your Eclipse Mining Assistant! 🌌
 Select an option below to manage your wallet and mining:
 Support: https://discord.gg/eclipse-fnd (#powpow)
 X: https://x.com/0xAsta2025
-
+```
 A menu with these buttons:
 Start
 
@@ -498,8 +500,9 @@ python3 bitz_bot.py
 ```
 Detach from the session to leave it running:
 
+ ```bash
 Press Ctrl+A, then D
-
+```
 What to expect: You’ll see [detached from 12345.bot] or similar, and the bot keeps running.
 
 What this does: Lets the bot stay active even if you close your terminal.
@@ -535,7 +538,7 @@ Time: 1 minute.
 
 Tip: If screen -r bot shows no session, restart with Step 15.1.
 
-Troubleshooting
+## Troubleshooting
 Hit a problem? Here’s how to fix common issues with commands you can copy and paste:
 Bot doesn’t respond in Telegram:
 Check the bot’s log for errors:
@@ -627,7 +630,7 @@ Update pip:
 
 pip install --upgrade pip
 ```
-Still stuck?:
+## Still stuck?:
 Share your issue in the Eclipse community:
 Discord: https://discord.gg/eclipse-fnd (#powpow)
 
@@ -639,7 +642,7 @@ Check bitz_bot.log for clues:
 
 cat bitz_bot.log
 ```
-Security Tips
+## Security Tips
 Keep your bot and wallet safe:
 Never share .env or keypair: Your .env file and ~/.config/solana/id.json contain sensitive data. Don’t upload them to GitHub or share them.
 
@@ -676,7 +679,7 @@ Revoke bot token if leaked: If you think your token was exposed, use BotFather:
 /revoke
 ```
   Then update .env with the new token.
-Advanced Usage
+## Advanced Usage
 Once the bot is running, here’s how to make the most of it:
 Monitor Balance: Use Bitz Account to check your BITZ and ETH regularly.
 
@@ -700,7 +703,7 @@ To stop a mining session:
 
 screen -S eclipse_bitz -X quit
 ```
-Contributing
+## Contributing
 Want to improve the bot? We’d love your help!
 Report Bugs: Open an issue on GitHub with what went wrong.
 
@@ -719,9 +722,9 @@ git commit -m "Describe your changes here"
 git push origin main
 # Create a pull request on GitHub
 ```
-License
+## License
 This project is licensed under the MIT License. See the LICENSE file for details. You’re free to use, modify, and share the bot, as long as you follow the license terms.
-Acknowledgments
+## Acknowledgments
 Built with  for the Eclipse mining community.
 
 Thanks to python-telegram-bot for making Telegram bots easy.
@@ -731,7 +734,7 @@ Props to the Eclipse network for powering BITZ mining.
 Created by @0xAsta2025
 .
 
-Questions? Need Help?
+## Questions? Need Help?
 Get support from the community:
 Discord: https://discord.gg/eclipse-fnd (#powpow)
 
