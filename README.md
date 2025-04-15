@@ -64,7 +64,7 @@ Time: 2–5 minutes, depending on your internet and system.
 
 Tip: If asked for a password, use your VPS or user password. If it hangs, check your internet connection.
 
-Step 3: Install Python
+### Step 3: Install Python
 The bot needs Python 3.8 or higher to run. Check if it’s installed:
 
  ```bash
@@ -97,7 +97,7 @@ Time: 1–3 minutes.
 
 Tip: If you get errors, rerun sudo apt-get update.
 
-Step 4: Install screen
+### Step 4: Install screen
 The bot uses screen to run mining processes in the background, so they continue even if you close your terminal. Install it:
  ```bash
 
@@ -116,7 +116,7 @@ Time: Less than a minute.
 
 Tip: If the install fails, check your internet or rerun the command.
 
-Step 5: Install git
+### Step 5: Install git
 You need git to download the bot’s code from GitHub:
  ```bash
 
@@ -135,7 +135,7 @@ Time: Less than a minute.
 
 Tip: If you get a "command not found" error, ensure sudo apt-get update ran successfully.
 
-Step 6: Clone the Bot’s Repository
+### Step 6: Clone the Bot’s Repository
 Download the bot’s code from GitHub:
  ```bash
 
@@ -155,7 +155,7 @@ Ensure the repo is public (in GitHub settings).
 
 If you used a different repo name, replace citceo/eclipse-bitz-bot with your own.
 
-Step 7: Set Up a Virtual Environment
+### Step 7: Set Up a Virtual Environment
 A virtual environment keeps the bot’s libraries separate to avoid conflicts with other programs:
  ```bash
 
@@ -177,7 +177,7 @@ Tip: If you close your terminal later, reactivate with:
 
 source venv/bin/activate
 ```
-Step 8: Install Python Libraries
+### Step 8: Install Python Libraries
 Install the bot’s required libraries using the requirements.txt file:
  ```bash
 
@@ -233,7 +233,7 @@ Tip: If errors occur, update pip:
 
 pip install --upgrade pip
 ```
-Step 9: Install the bitz CLI Tool
+### Step 9: Install the bitz CLI Tool
 The bot uses the bitz CLI to interact with the Eclipse network for mining and wallet tasks. Eclipse provides the bitz CLI, but you’ll need their official instructions to install it (check their website, GitHub, or Discord). Since I don’t have the exact steps, here’s a placeholder—you’ll need to replace it with the real commands:
 Download the bitz CLI (example—find the correct link):
 
@@ -267,7 +267,7 @@ Check their website or GitHub for CLI documentation.
 
 Tip: If you can’t install bitz yet, proceed with setup and return to this step before mining. The bot will still run for other tasks.
 
-Step 10: Create a Telegram Bot
+### Step 10: Create a Telegram Bot
 You need a Telegram bot to interact with the code:
 Open Telegram (on your phone or computer) and search for @BotFather.
 
@@ -300,7 +300,7 @@ Time: 2 minutes.
 
 Tip: Don’t share the token—it’s like a password for your bot.
 
-Step 11: Find Your Telegram Chat ID
+### Step 11: Find Your Telegram Chat ID
 The bot only responds to you (or a specific chat) for security. To get your Chat ID:
 In Telegram, search for @userinfobot.
 
@@ -322,7 +322,7 @@ Time: 1 minute.
 
 Tip: If you want the bot in a group, add it to the group and use /start@UserInfoBot to get the group’s Chat ID.
 
-Step 12: Set Up Your Eclipse Wallet
+### Step 12: Set Up Your Eclipse Wallet
 You need an Eclipse wallet address and a keypair file for mining:
 Wallet Address:
 If you have the bitz CLI installed, check your wallet:
@@ -377,7 +377,7 @@ Time: 2–5 minutes.
 
 Tip: If bitz account fails, ensure bitz is installed and your wallet has some ETH (at least 0.005 for mining).
 
-Step 13: Configure Environment Variables
+### Step 13: Configure Environment Variables
 The bot uses a .env file to store sensitive info like your bot token. Create it:
 ```bash
 
@@ -418,7 +418,7 @@ Time: 2 minutes.
 
 Tip: The default RPC_URL works for Eclipse, but you can change it later using the bot’s "RPC" button.
 
-Step 14: Test the Bot
+### Step 14: Test the Bot
 Let’s see if the bot works! Run it:
  ```bash
 
@@ -481,7 +481,7 @@ Time: 2–3 minutes.
 
 Tip: If nothing happens, check the Troubleshooting section.
 
-Step 15: Run the Bot in the Background
+### Step 15: Run the Bot in the Background
 To keep the bot running 24/7 (e.g., on a VPS):
 Start a screen session:
 
