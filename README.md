@@ -78,8 +78,9 @@ If not: If you get an error or a lower version, install Python:
  ```bash
 
 sudo apt-get install python3 python3-pip python3-venv -y
-
+```
 Verify Python and its tools:
+
  ```bash
 
 python3 --version
