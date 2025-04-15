@@ -1,209 +1,250 @@
 # Eclipse BITZ Mining Telegram Bot
 
-Welcome to the Eclipse BITZ Mining Telegram Bot! 🚀 This bot makes it super easy to manage your BITZ mining on the Eclipse network. With a clean menu, you can check your BITZ and ETH balance, start or stop mining, claim tokens, switch RPC links, and more—all from Telegram. Plus, all messages auto-delete after 60 seconds for privacy. 🌌
+Welcome to the Eclipse BITZ Mining Telegram Bot! 🚀 This bot lets you manage your BITZ mining on the Eclipse network right from Telegram. With a simple menu, you can check your BITZ and ETH balance, start or stop mining, claim tokens, switch RPC links, and more. All messages auto-delete after 60 seconds for privacy. 🌌
 
-Whether you're a crypto newbie or a pro, this guide will walk you through every step to set up and run the bot, with commands you can copy and paste. Let's get started!
+If you’ve already set up Rust, Solana CLI, `bitz` CLI, and your Eclipse wallet, this guide will help you get the bot running quickly. Just copy and paste the commands below, and you’ll be controlling your mining from Telegram in no time!
 
 ## What This Bot Does
-- **Check Balance**: See your BITZ and ETH balance in a nicely formatted message.
-- **Start/Stop Mining**: Launch or halt mining with the `bitz collect` command.
-- **Claim Tokens**: Claim your BITZ tokens with a confirmation step to avoid mistakes.
-- **Manage Screen Sessions**: Check or terminate background mining processes.
-- **Switch RPC Links**: Update the RPC endpoint for mining with a simple text input.
-- **Coming Soon**: A placeholder for exciting future features!
-- **Privacy First**: All bot messages vanish after 60 seconds.
-- **Secure Setup**: Uses environment variables to keep your sensitive info safe.
+- **Check Balance**: View your BITZ and ETH balance in a clear message.
+- **Start/Stop Mining**: Run or halt mining with the `bitz collect` command.
+- **Claim Tokens**: Claim your BITZ tokens with a confirmation step.
+- **Manage Screen Sessions**: Check or stop background mining processes.
+- **Switch RPC Links**: Update the RPC endpoint with a text input.
+- **Coming Soon**: Placeholder for future features!
+- **Privacy First**: Messages vanish after 60 seconds.
+- **Secure Setup**: Uses environment variables to keep your info safe.
 
 ## Who Can Use This?
-Anyone with a Linux system (like an Ubuntu VPS) and a Telegram account! No advanced coding skills needed—just follow the steps below, and you'll have your bot running in no time.
+Anyone with a Linux system (like an Ubuntu VPS), a Telegram account, and the `bitz` CLI already installed. No coding skills needed—just follow the steps below.
 
 ## Prerequisites
-Before you begin, make sure you have:
-1. **A Linux System**: Ubuntu 20.04 or later is ideal (e.g., a VPS from DigitalOcean, AWS, or Google Cloud). Windows/macOS users can set up a Linux VM or VPS.
-2. **Internet Access**: To download files, interact with Telegram, and connect to the Eclipse network.
-3. **A Telegram Account**: For creating and using the bot.
-4. **An Eclipse Wallet**: You'll need a wallet address and keypair for mining.
-5. **Basic Terminal Access**: You’ll use a terminal (like PuTTY for VPS or Terminal on Linux) to run commands.
-6. **Time**: About 15–30 minutes to set everything up, depending on your system.
+This guide assumes you’ve already:
+1. **Installed Rust**: Using `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh` and sourced the environment.
+2. **Installed Solana CLI**: Using `curl --proto '=https' --tlsv1.2 -sSfL https://solana-install.solana.workers.dev | bash`.
+3. **Created an Eclipse Wallet**: With `solana-keygen new`, saved at `~/.config/solana/id.json`, and backed up your public key and mnemonic.
+4. **Installed `bitz` CLI**: Using `cargo install bitz`.
+5. **Set an RPC Endpoint**: Configured with `solana config set --url https://mainnetbeta-rpc.eclipse.xyz/` (or another Eclipse RPC).
+6. **Funded Your Wallet**: Sent at least 0.005 ETH to your public key for mining.
+7. **Tested Mining**: Ran `bitz collect` in a `screen` session and know how to detach/reattach.
 
-Don't worry if any of this sounds unfamiliar—the steps below explain everything in detail!
+You’ll also need:
+- **A Linux System**: Ubuntu 20.04 or later (e.g., a VPS or local Linux machine).
+- **Internet Access**: To download files and connect to Telegram.
+- **A Telegram Account**: To create and use the bot.
+- **Terminal Access**: To run commands (e.g., PuTTY for VPS or Terminal on Linux).
+- **Time**: About 10–20 minutes to set up the bot.
+
+If any of this sounds unfamiliar, double-check your setup or ask for help in the [Eclipse Discord](https://discord.gg/eclipse-fnd) (#powpow).
 
 ## Step-by-Step Setup Guide
-Follow these steps exactly, copying and pasting commands into your terminal. We’ll assume you’re using a fresh Ubuntu 20.04 VPS, but the steps are similar for other Linux systems. If you hit any snags, check the **Troubleshooting** section at the end.
+Follow these steps, copying and pasting commands into your terminal. We assume you’re using an Ubuntu 20.04 VPS with `bitz` CLI already installed. If you hit issues, check the **Troubleshooting** section.
 
 ### Step 1: Log In to Your Linux System
 1. Open your terminal:
-   - **On a VPS**: Use PuTTY (Windows) or `ssh` (Linux/macOS). For example:
-
-     ```bash
-     ssh username@your-vps-ip
-     ```
-
-     Replace `username` and `your-vps-ip` with your VPS details (e.g., `ssh ubuntu@192.168.1.1`).
-   - **On a local Linux machine**: Open the Terminal app (search for "Terminal" or press `Ctrl+Alt+T`).
-2. If prompted, enter your password. You’re now in the terminal!
-
-- **What this does**: Connects you to your Linux system where you’ll run all commands.
-- **Time**: 1 minute.
-- **Tip**: If you don’t have a VPS, sign up for one (e.g., DigitalOcean) or use a local Linux machine.
-
-### Step 2: Update Your System
-Keep your system up to date to avoid software issues:
+   - **On a VPS**: Use PuTTY (Windows) or `ssh` (Linux/macOS):
 
 ```bash
+ssh username@your-vps-ip
+```
+ Replace `username` and `your-vps-ip` with your VPS details (e.g., `ssh ubuntu@192.168.1.1`).
+
+
+On a local Linux machine: Open Terminal (Ctrl+Alt+T).
+
+Enter your password if prompted.
+
+What this does: Gets you into your Linux system to run commands.
+
+Time: Less than a minute.
+
+### Step 2: Update Your System
+Ensure your system is up to date:
+```bash
+
 sudo apt-get update
 sudo apt-get upgrade -y
 ```
+What to expect: Downloads and installs updates. May take a few minutes.
 
+What this does: Keeps your system secure and compatible.
 
- What to expect  : The terminal will download package lists and install updates. It might take a few minutes.
+Time: 1–5 minutes.
 
- What this does ## : Ensures your system has the latest security patches and software.
+Tip: If prompted, enter your password. If it hangs, check your internet.
 
- Time: 2–5 minutes , depending on your internet and system.
+### Step 3: Verify bitz CLI and Wallet
+Confirm your bitz CLI and wallet are ready:
+Check bitz CLI:
 
- Tip: If asked for a password, use your VPS or user password. If it hangs, check your internet connection.
+```bash
 
-### Step 3: Install Python
-The bot needs Python 3.8 or higher to run. Check if it’s installed:
+bitz --version
+```
+Expected output: Something like bitz version x.y.z.
 
- ```bash
+If you get "command not found," reinstall bitz with:
+
+```bash
+
+cargo install bitz
+```
+Verify your keypair:
+
+```bash
+
+ls -l ~/.config/solana/id.json
+```
+Expected output: Shows the file exists (e.g., -rw------- 1 user user ... id.json).
+
+If missing, recreate it (but back up any existing wallet first):
+
+```bash
+
+solana-keygen new --outfile ~/.config/solana/id.json
+```
+Check your wallet balance:
+
+```bash
+
+bitz account
+```
+Expected output: Shows your BITZ and ETH balance (e.g., 0.005 ETH).
+
+If you have less than 0.005 ETH, send more to your public key via an exchange.
+
+What this does: Ensures bitz CLI works and your wallet is funded.
+
+Time: 1–3 minutes.
+
+Tip: If bitz account fails, check your RPC:
+
+```bash
+
+solana config get
+```
+   Set it if needed:
+```bash
+
+solana config set --url https://mainnetbeta-rpc.eclipse.xyz/
+```
+### Step 4: Install Python
+The bot needs Python 3.8 or higher. Check if it’s installed:
+```bash
 
 python3 --version
 ```
-What to expect: If you see Python 3.8.x or higher (e.g., Python 3.10.12), skip to Step 4.
+What to expect:
+If you see Python 3.8.x or higher (e.g., Python 3.10.12), skip to Step 5.
 
-If not: If you get an error or a lower version, install Python:
+If not, install Python:
 
- ```bash
+```bash
 
 sudo apt-get install python3 python3-pip python3-venv -y
 ```
-Verify Python and its tools:
-
- ```bash
+Verify:
+```bash
 
 python3 --version
 pip3 --version
 ```
 Expected output:
-Python 3.8.x or higher (e.g., Python 3.10.12).
+Python 3.8.x or higher.
 
-pip 20.x.x or similar (e.g., pip 22.0.2).
+pip 20.x.x or similar.
 
-What this does: Installs Python (the bot’s language), pip (for installing libraries), and venv (for isolating the bot’s setup).
+What this does: Installs Python, pip (for libraries), and venv (for isolation).
 
 Time: 1–3 minutes.
 
-Tip: If you get errors, rerun sudo apt-get update.
-
-### Step 4: Install screen
-The bot uses screen to run mining processes in the background, so they continue even if you close your terminal. Install it:
- ```bash
-
-sudo apt-get install screen -y
-```
-Check it’s installed:
- ```bash
+### Step 5: Install screen
+If you’ve used screen for mining, it’s probably installed. Confirm:
+```bash
 
 screen --version
 ```
-Expected output: Something like Screen version 4.08.00.
+What to expect: Output like Screen version 4.08.00.
 
-What this does: Adds screen, a tool for managing long-running tasks like mining.
+If not installed, add it:
+
+```bash
+
+sudo apt-get install screen -y
+```
+What this does: Allows the bot to manage mining sessions.
 
 Time: Less than a minute.
 
-Tip: If the install fails, check your internet or rerun the command.
-
-### Step 5: Install git
-You need git to download the bot’s code from GitHub:
- ```bash
+### Step 6: Install git
+You need git to download the bot’s code:
+```bash
 
 sudo apt-get install git -y
 ```
-Verify it’s installed:
- ```bash
+Verify:
+```bash
 
 git --version
 ```
 Expected output: Something like git version 2.34.1.
 
-What this does: Installs git, which lets you clone the bot’s repository.
+What this does: Installs git for cloning the repository.
 
 Time: Less than a minute.
 
-Tip: If you get a "command not found" error, ensure sudo apt-get update ran successfully.
-
-### Step 6: Clone the Bot’s Repository
-Download the bot’s code from GitHub:
- ```bash
+### Step 7: Clone the Bot’s Repository
+Download the bot’s code:
+```bash
 
 git clone https://github.com/citceo/eclipse-bitz-bot.git
 cd eclipse-bitz-bot
 ```
-What to expect: This creates a folder called eclipse-bitz-bot with the bot’s files and moves you into it.
+What to expect: Creates a folder eclipse-bitz-bot and moves you into it.
 
-What this does: Copies the bot’s code to your system so you can set it up.
+What this does: Gets the bot’s files onto your system.
 
-Time: 1–2 minutes, depending on your internet speed.
+Time: 1–2 minutes.
 
-Tip: If you get a "repository not found" error:
-Check the link matches your GitHub repo (e.g., https://github.com/citceo/eclipse-bitz-bot.git).
+Tip: If the clone fails, check the repo URL (https://github.com/citceo/eclipse-bitz-bot.git) or your internet.
 
-Ensure the repo is public (in GitHub settings).
-
-If you used a different repo name, replace citceo/eclipse-bitz-bot with your own.
-
-### Step 7: Set Up a Virtual Environment
-A virtual environment keeps the bot’s libraries separate to avoid conflicts with other programs:
- ```bash
+### Step 8: Set Up a Virtual Environment
+Create a virtual environment to keep the bot’s libraries separate:
+```bash
 
 python3 -m venv venv
 source venv/bin/activate
 ```
-What to expect: After the second command, your terminal prompt will show (venv), meaning the environment is active.
+What to expect: Your prompt shows (venv) after activation.
 
-What this does:
-Creates a venv folder for the bot’s libraries.
-
-Activates the environment so commands like pip only affect the bot.
+What this does: Isolates the bot’s dependencies.
 
 Time: Less than a minute.
 
-Tip: If you close your terminal later, reactivate with:
+Tip: Reactivate later with:
 
- ```bash
+```bash
 
 source venv/bin/activate
 ```
-### Step 8: Install Python Libraries
-Install the bot’s required libraries using the requirements.txt file:
- ```bash
+### Step 9: Install Python Libraries
+Install the bot’s required libraries:
+```bash
 
 pip install -r requirements.txt
 ```
-This installs everything listed in requirements.txt:
-plaintext
- ```bash
-python-telegram-bot==20.7
-psutil
-requests
-python-dotenv
-```
-If requirements.txt doesn’t work, install manually:
- ```bash
+If that doesn’t work, install manually:
+```bash
 
 pip install python-telegram-bot==20.7
 pip install "python-telegram-bot[job-queue]"
 pip install psutil requests python-dotenv
 ```
-Verify the libraries:
- ```bash
+Verify:
+```bash
 
 pip list
 ```
-Expected output: You’ll see:
+Expected output:
 python-telegram-bot (version 20.7)
 
 psutil
@@ -212,244 +253,140 @@ requests
 
 python-dotenv
 
-Plus some dependencies like httpx.
-
 What this does:
-python-telegram-bot: Runs the Telegram bot.
+python-telegram-bot: Runs the bot.
 
-job-queue: Auto-deletes messages after 60 seconds.
+job-queue: Deletes messages after 60 seconds.
 
-psutil: Manages mining processes.
+psutil: Manages processes.
 
-requests: Handles network tasks.
+requests: Handles network calls.
 
-python-dotenv: Loads sensitive settings securely.
+python-dotenv: Loads secure settings.
 
 Time: 1–3 minutes.
 
-Tip: If errors occur, update pip:
+Tip: Update pip if errors occur:
 
- ```bash
+```bash
 
 pip install --upgrade pip
 ```
-### Step 9: Install the bitz CLI Tool
-The bot uses the bitz CLI to interact with the Eclipse network for mining and wallet tasks. Eclipse provides the bitz CLI, but you’ll need their official instructions to install it (check their website, GitHub, or Discord). Since I don’t have the exact steps, here’s a placeholder—you’ll need to replace it with the real commands:
-Download the bitz CLI (example—find the correct link):
-
- ```bash
-
-wget https://example.com/bitz-cli-latest-linux
-```
-Make it executable and move it to a system path:
-
- ```bash
-
-chmod +x bitz-cli-latest-linux
-sudo mv bitz-cli-latest-linux /usr/local/bin/bitz
-```
-Check it’s installed:
-
- ```bash
-
-bitz --version
-```
-Expected output: Something like bitz version x.y.z (depends on the tool).
-
-What this does: Installs bitz, which the bot uses to check balances, mine, and claim tokens.
-
-Time: 2–5 minutes, depending on Eclipse’s instructions.
-
-Important: To find the real bitz installation steps:
-Visit Eclipse’s Discord: https://discord.gg/eclipse-fnd (#powpow).
-
-Check their website or GitHub for CLI documentation.
-
-Tip: If you can’t install bitz yet, proceed with setup and return to this step before mining. The bot will still run for other tasks.
-
 ### Step 10: Create a Telegram Bot
-You need a Telegram bot to interact with the code:
-Open Telegram (on your phone or computer) and search for @BotFather.
+Set up a Telegram bot for the code:
+Open Telegram and search for @BotFather.
 
-Start BotFather:
+Send:
 
- ```bash
+```bash
 
 /start
 ```
-Create a new bot:
+Create a bot:
 
- ```bash
+```bash
 
 /newbot
 ```
-Follow the prompts:
-Name: Pick anything, like "Eclipse BITZ Bot".
+Follow prompts:
+Name: Anything (e.g., "Eclipse BITZ Bot").
 
-Username: Must end in "Bot", like @MyEclipseBitzBot.
+Username: Must end in "Bot" (e.g., @MyEclipseBitzBot).
 
-BotFather will give you a Bot Token, looking like:
- ```bash
-1234567890:ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890
-```
-Copy the token and save it somewhere safe (e.g., a text file or password manager).
+Copy the Bot Token (e.g., 1234567890:ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890) and save it.
 
-What this does: Registers your bot with Telegram so it can send and receive messages.
+What this does: Registers your bot with Telegram.
 
 Time: 2 minutes.
 
-Tip: Don’t share the token—it’s like a password for your bot.
+Tip: Keep the token private.
 
 ### Step 11: Find Your Telegram Chat ID
-The bot only responds to you (or a specific chat) for security. To get your Chat ID:
+The bot only responds to you for security:
 In Telegram, search for @userinfobot.
 
-Start it:
+Send:
 
- ```bash
+```bash
 
 /start
 ```
-It will reply with your Chat ID, like:
- ```bash
-123456789
-```
-Copy the Chat ID and save it.
+Copy the Chat ID (e.g., 123456789) from the reply.
 
-What this does: Tells the bot who’s allowed to use it, keeping it private.
+What this does: Restricts bot access to you.
 
 Time: 1 minute.
 
-Tip: If you want the bot in a group, add it to the group and use /start@UserInfoBot to get the group’s Chat ID.
+Tip: For group chats, add the bot to the group and use /start@getidsbot.
 
-### Step 12: Set Up Your Eclipse Wallet
-You need an Eclipse wallet address and a keypair file for mining:
-Wallet Address:
-If you have the bitz CLI installed, check your wallet:
+### Step 12: Configure Environment Variables
+Set up the bot’s settings:
+Copy the example file:
 
- ```bash
-
-bitz account
-```
-This should show your address, like:
-
- ```bash
-YourWalletAddress123...
-```
-Copy the address and save it.
-
-If bitz isn’t installed yet, skip this and return after Step 9.
-
-Solana Keypair:
-The bot expects a keypair at ~/.config/solana/id.json. Create one:
-
- ```bash
-
-mkdir -p ~/.config/solana
-```
-If bitz supports key generation:
-
- ```bash
-
-bitz keygen --outfile ~/.config/solana/id.json
-```
-If not, use the Solana CLI to create a keypair:
-
- ```bash
-
-sudo apt-get install curl -y
-curl -sSfL https://release.solana.com/stable/install | sh
-export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
-solana-keygen new --outfile ~/.config/solana/id.json
-```
-When prompted, set a passphrase (or press Enter for none). Back up the passphrase or seed phrase securely.
-
-Verify the keypair file:
-
- ```bash
-
-ls -l ~/.config/solana/id.json
-```
-Critical: This file is your private key. Never share it, and back it up (e.g., on an encrypted USB drive).
-
-What this does: Sets up your wallet so the bot can check balances, mine, and claim tokens.
-
-Time: 2–5 minutes.
-
-Tip: If bitz account fails, ensure bitz is installed and your wallet has some ETH (at least 0.005 for mining).
-
-### Step 13: Configure Environment Variables
-The bot uses a .env file to store sensitive info like your bot token. Create it:
 ```bash
 
 cp .env.example .env
+```
+Edit it:
+
+```bash
+
 nano .env
 ```
-You’ll see the contents of .env.example:
-plaintext
-```bash
-BOT_TOKEN=your_telegram_bot_token
-CHAT_ID=your_telegram_chat_id
-WALLET_ADDRESS=your_wallet_address
-RPC_URL=https://mainnetbeta-rpc.eclipse.xyz
-```
-Replace the placeholders with your values, for example:
-plaintext
-```bash
+Replace placeholders with your values, like:
+
+```plaintext
+
 BOT_TOKEN=1234567890:ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890
 CHAT_ID=123456789
 WALLET_ADDRESS=YourWalletAddress123...
 RPC_URL=https://mainnetbeta-rpc.eclipse.xyz
 ```
+Use your wallet’s public key from bitz account.
+
+Keep the RPC URL from your solana config get output.
+
 Save and exit:
-Press Ctrl+O, then Enter to save.
+Ctrl+O, Enter to save.
 
-Press Ctrl+X to exit.
+Ctrl+X to exit.
 
-Verify the file:
+Verify:
+
 ```bash
 
 cat .env
 ```
-What to expect: You’ll see your settings (don’t share this output!).
-
-What this does: Stores your bot token, Chat ID, wallet address, and RPC link securely so the bot can use them.
+What this does: Stores your bot token, chat ID, wallet address, and RPC securely.
 
 Time: 2 minutes.
 
-Tip: The default RPC_URL works for Eclipse, but you can change it later using the bot’s "RPC" button.
+Tip: Ensure no typos in .env.
 
-### Step 14: Test the Bot
-Let’s see if the bot works! Run it:
- ```bash
+### Step 13: Test the Bot
+Run the bot to check it works:
+```bash
 
 python3 bitz_bot.py
 ```
 If the virtual environment isn’t active:
 
- ```bash
+```bash
 
 source venv/bin/activate
 python3 bitz_bot.py
 ```
 What to expect:
-The terminal may show logs but shouldn’t crash.
+Terminal shows logs (no errors).
 
-Open Telegram, find your bot (e.g., @MyEclipseBitzBot), and send:
-
- ```bash
-
-/start
+In Telegram, send /start to your bot (e.g., @MyEclipseBitzBot):
 ```
-You should see:
-
-```bash
 Welcome to your Eclipse Mining Assistant! 🌌
 Select an option below to manage your wallet and mining:
 Support: https://discord.gg/eclipse-fnd (#powpow)
 X: https://x.com/0xAsta2025
 ```
-A menu with these buttons:
+Menu buttons:
 Start
 
 Bitz Collect
@@ -466,279 +403,234 @@ Coming Soon
 
 RPC
 
-Test the buttons:
-Coming Soon: Should say "Coming soon..." and delete after 60 seconds.
+Test buttons:
+Coming Soon: Shows "Coming soon..." and deletes after 60 seconds.
 
-Bitz Account: Should show your wallet balance (if bitz and keypair are set up).
+Bitz Account: Displays your wallet balance.
 
-RPC: Should prompt for a new RPC link.
+Bitz Collect: Starts mining in a screen session.
 
-Start: Should check if mining is running.
+RPC: Lets you update the RPC link.
 
-All messages should disappear after 60 seconds.
-
-What this does: Confirms the bot is working and responding to commands.
+What this does: Confirms the bot is working.
 
 Time: 2–3 minutes.
 
-Tip: If nothing happens, check the Troubleshooting section.
-
-### Step 15: Run the Bot in the Background
-To keep the bot running 24/7 (e.g., on a VPS):
+Step 14: Run the Bot in the Background
+Keep the bot running 24/7:
 Start a screen session:
 
- ```bash
+```bash
 
 screen -S bot
 ```
-Activate the virtual environment and run the bot:
+Run the bot:
 
- ```bash
+```bash
 
 source venv/bin/activate
 python3 bitz_bot.py
 ```
-Detach from the session to leave it running:
-
- ```bash
+Detach (leave it running):
+```
 Press Ctrl+A, then D
 ```
-What to expect: You’ll see [detached from 12345.bot] or similar, and the bot keeps running.
+What to expect: Shows [detached from 12345.bot].
 
-What this does: Lets the bot stay active even if you close your terminal.
+Reattach later:
 
-To check on the bot later:
-
- ```bash
-
-screen -r bot
-```
-To stop the bot:
-Return to the session:
-
- ```bash
+```bash
 
 screen -r bot
 ```
 Stop the bot:
+Reattach:
 
- ```bash
+```bash
 
+screen -r bot
+```
+Stop:
+```
 Press Ctrl+C
 ```
-Exit the session:
+Exit:
 
- ```bash
+```bash
 
 exit
 ```
-What this does: Makes the bot reliable for long-term use, like mining.
+What this does: Keeps the bot online for continuous use.
 
 Time: 1 minute.
 
-Tip: If screen -r bot shows no session, restart with Step 15.1.
+Troubleshooting
+Fix common issues with these commands:
+Bot doesn’t respond:
+Check logs:
 
-## Troubleshooting
-Hit a problem? Here’s how to fix common issues with commands you can copy and paste:
-Bot doesn’t respond in Telegram:
-Check the bot’s log for errors:
-
- ```bash
+```bash
 
 cat bitz_bot.log
 ```
-Verify your .env file:
+Verify .env:
 
- ```bash
+```bash
 
 cat .env
 ```
-Ensure BOT_TOKEN and CHAT_ID match what you got from BotFather and UserInfoBot.
+Ensure BOT_TOKEN and CHAT_ID are correct.
 
-Restart the bot:
+Restart:
 
- ```bash
+```bash
 
-source venv/bin/activate
 python3 bitz_bot.py
 ```
-Error: "command not found: bitz":
-The bitz CLI isn’t installed. Revisit Step 9 and find Eclipse’s installation guide (website, GitHub, or Discord).
+"command not found: bitz":
+Reinstall bitz:
 
-Test if bitz is available:
+```bash
 
- ```bash
+cargo install bitz
+```
+Verify:
+
+```bash
 
 bitz --version
 ```
 Messages don’t auto-delete:
-Ensure the job-queue library is installed:
+Install job-queue:
 
- ```bash
+```bash
 
 pip install "python-telegram-bot[job-queue]"
 ```
-Restart the bot:
+Restart:
 
- ```bash
+```bash
 
 python3 bitz_bot.py
 ```
-Mining fails with "Error: insufficient balance":
-Your wallet needs at least 0.005 ETH. Check your balance:
+Mining doesn’t start:
+Check balance (needs 0.005 ETH):
 
- ```bash
+```bash
 
-bitz account --keypair ~/.config/solana/id.json --rpc https://mainnetbeta-rpc.eclipse.xyz
+bitz account
 ```
-Fund your wallet via an Eclipse-compatible exchange or faucet (ask in Discord for faucets).
+Verify keypair:
 
-Keypair errors:
-Verify the keypair file exists:
-
- ```bash
+```bash
 
 ls -l ~/.config/solana/id.json
 ```
-If missing, recreate it (Step 12).
+Check RPC:
 
-Fix permissions if needed:
+```bash
 
- ```bash
-
-chmod 600 ~/.config/solana/id.json
+solana config get
 ```
-"Permission denied" errors:
-Fix file ownership:
+Set if needed:
 
- ```bash
+```bash
 
-sudo chown $USER:$USER ~/.config/solana/id.json
+solana config set --url https://mainnetbeta-rpc.eclipse.xyz/
 ```
-Or run commands with sudo if appropriate.
+Python errors:
+Reinstall libraries:
 
-Bot crashes with Python errors:
-Ensure all libraries are installed:
-
- ```bash
+```bash
 
 pip install -r requirements.txt
 ```
 Update pip:
 
- ```bash
+```bash
 
 pip install --upgrade pip
 ```
-## Still stuck?:
-Share your issue in the Eclipse community:
-Discord: https://discord.gg/eclipse-fnd (#powpow)
+Need help?:
+Eclipse Discord: https://discord.gg/eclipse-fnd (#powpow)
 
 X: https://x.com/0xAsta2025
 
-Check bitz_bot.log for clues:
+Security Tips
+Protect .env: Never share it or upload it to GitHub.
 
- ```bash
+Back up keypair: Copy ~/.config/solana/id.json to a secure place:
 
-cat bitz_bot.log
-```
-## Security Tips
-Keep your bot and wallet safe:
-Never share .env or keypair: Your .env file and ~/.config/solana/id.json contain sensitive data. Don’t upload them to GitHub or share them.
-
-Back up your keypair: Copy ~/.config/solana/id.json to a secure place (e.g., an encrypted USB):
-
- ```bash
+```bash
 
 cp ~/.config/solana/id.json ~/backup-id.json
 ```
-Secure your VPS: Use strong passwords and enable a firewall:
+Secure your VPS: Update regularly:
 
- ```bash
-
-sudo ufw enable
-sudo ufw allow ssh
-```
-Update regularly: Keep your system secure:
-
- ```bash
+```bash
 
 sudo apt-get update
 sudo apt-get upgrade -y
 ```
-Monitor logs: Check for suspicious activity:
+Monitor logs: Check for issues:
 
- ```bash
+```bash
 
 cat bitz_bot.log
 ```
-Revoke bot token if leaked: If you think your token was exposed, use BotFather:
+Revoke token if leaked: Use @BotFather’s /revoke, then update .env.
 
- ```bash
+Advanced Usage
+Check Balance: Use Bitz Account often.
 
-/revoke
+Mining: Bitz Collect runs mining in a screen session.
+
+Claim Tokens: Bitz Claim to collect BITZ.
+
+RPC Switch: Update with RPC if the default is slow.
+
+Sessions: Use Check Screen and Kill All Screens to manage mining.
+
+Manual mining commands (outside the bot):
+```bash
+
+screen -S eclipse
+bitz collect
+# Detach: Ctrl+A, D
+# Reattach: screen -r eclipse
 ```
-  Then update .env with the new token.
-## Advanced Usage
-Once the bot is running, here’s how to make the most of it:
-Monitor Balance: Use Bitz Account to check your BITZ and ETH regularly.
+Contributing
+Improve the bot by:
+Reporting bugs on GitHub Issues.
 
-Run Mining: Click Bitz Collect to start mining in a screen session. It’ll keep going even if you disconnect.
+Suggesting features via Issues.
 
-Claim Tokens: Use Bitz Claim to collect mined BITZ. Confirm carefully to avoid errors.
+Submitting code:
 
-Change RPC: If the default RPC is slow, use RPC to enter a new link (e.g., a premium endpoint).
-
-Manage Sessions: Use Check Screen to list running sessions and Kill All Screens to stop them if needed.
-
-Stay Updated: Click Coming Soon to see if new features are added (it’s just a placeholder for now).
-
-To check mining status manually:
- ```bash
-
-screen -r eclipse_bitz
-```
-To stop a mining session:
- ```bash
-
-screen -S eclipse_bitz -X quit
-```
-## Contributing
-Want to improve the bot? We’d love your help!
-Report Bugs: Open an issue on GitHub with what went wrong.
-
-Suggest Features: Share ideas via GitHub Issues.
-
-Add Code: Fork the repo, make changes, and submit a pull request.
-
-To contribute:
- ```bash
+```bash
 
 git clone https://github.com/citceo/eclipse-bitz-bot.git
 cd eclipse-bitz-bot
-# Edit files (e.g., bitz_bot.py)
+# Edit files
 git add .
-git commit -m "Describe your changes here"
+git commit -m "Your changes"
 git push origin main
-# Create a pull request on GitHub
+# Create a pull request
 ```
-## License
-This project is licensed under the MIT License. See the LICENSE file for details. You’re free to use, modify, and share the bot, as long as you follow the license terms.
-## Acknowledgments
-Built with  for the Eclipse mining community.
+License
+MIT License. See LICENSE for details.
+Acknowledgments
+Built for the Eclipse mining community. 
 
-Thanks to python-telegram-bot for making Telegram bots easy.
+Thanks to python-telegram-bot and Eclipse.
 
-Props to the Eclipse network for powering BITZ mining.
-
-Created by @0xAsta2025
+By @0xAsta2025
 .
 
-## Questions? Need Help?
-Get support from the community:
+Questions?
 Discord: https://discord.gg/eclipse-fnd (#powpow)
 
 X: https://x.com/0xAsta2025
 
-Happy mining, and enjoy your bot! 
+Happy mining! 
 
