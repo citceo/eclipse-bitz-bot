@@ -56,13 +56,13 @@ sudo apt-get upgrade -y
 ```
 
 
-What to expect: The terminal will download package lists and install updates. It might take a few minutes.
+## What to expect ## : The terminal will download package lists and install updates. It might take a few minutes.
 
-What this does: Ensures your system has the latest security patches and software.
+## What this does ## : Ensures your system has the latest security patches and software.
 
-Time: 2–5 minutes, depending on your internet and system.
+## Time: 2–5 minutes , depending on your internet and system.
 
-Tip: If asked for a password, use your VPS or user password. If it hangs, check your internet connection.
+## Tip: If asked for a password, use your VPS or user password. If it hangs, check your internet connection.
 
 ### Step 3: Install Python
 The bot needs Python 3.8 or higher to run. Check if it’s installed:
