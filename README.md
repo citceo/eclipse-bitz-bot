@@ -15,26 +15,26 @@ The **Eclipse Mining Bot** is a Telegram-based bot designed to simplify and auto
 Installation
 Follow these steps to set up the Eclipse Mining Bot on your system.
 1. Clone the Repository
-bash
+```bash
 
 git clone https://github.com/your-username/eclipse-mining-bot.git
 cd eclipse-mining-bot
-
+```
 2. Install Python Dependencies
 The bot requires Python 3.8+ and specific libraries. Install them using:
-bash
+```bash
 
 pip install -r requirements.txt
-
+```
 3. Configure Environment Variables
 Create a .env file in the project root directory to store sensitive information:
-plaintext
+```plaintext
 
 BOT_TOKEN=your_telegram_bot_token
 CHAT_ID=your_telegram_chat_id
 WALLET_ADDRESS=your_wallet_public_key
 RPC_URL=https://mainnetbeta-rpc.eclipse.xyz
-
+```
 BOT_TOKEN: Obtain from BotFather on Telegram.
 
 CHAT_ID: Find by messaging your bot and checking the logs (bitz_bot.log) or using a bot like @userinfobot.
@@ -54,33 +54,33 @@ The Bitz CLI is installed and accessible via the bitz command.
 Running the Bot
 To ensure the bot continues running even after closing the terminal, execute it in a screen session.
 1. Start a Screen Session
-bash
+```bash
 
 screen -S eclipse_bot
-
+```
 2. Run the Bot
-bash
+```bash
 
 python bot.py
-
+```
 3. Detach from Screen
 To keep the bot running in the background, detach from the screen session:
 Press Ctrl + A, then D.
 
 4. Reattach to Screen
 To check on the bot or stop it:
-bash
+```bash
 
 screen -r eclipse_bot
-
+```
 To stop the bot, press Ctrl + C in the screen session.
 
 5. Stop the Screen Session
 If you want to terminate the screen session completely:
-bash
+```bash
 
 screen -S eclipse_bot -X quit
-
+```
 Using the Bot
 Once the bot is running, interact with it via Telegram:
 Send the /start command to your bot.
