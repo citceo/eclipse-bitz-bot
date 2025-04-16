@@ -189,3 +189,13 @@ Click Bitz Account to check your balance.
 
 Use Bitz Claim to collect your rewards when ready
 
+##Support
+If you get stuck or have questions:
+Discord: Join the Eclipse community at https://discord.gg/eclipse-fnd and check the #powpow channel.
+
+X: Message us at https://x.com/0xAsta2025
+ for help.
+
+##License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
