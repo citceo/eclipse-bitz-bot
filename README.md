@@ -105,7 +105,8 @@ Follow these steps to install and configure the Eclipse Mining Bot. These instru
 Download the bot’s source code from GitHub:
 ```bash
 git clone https://github.com/citceo/eclipse-bitz-bot
-cd eclipse-mining-bot
+cd eclipse-bitz-bot
+
 ```
 ### 2. Set Up a Python Virtual Environment
 To isolate dependencies and avoid conflicts, create a Python virtual environment:
