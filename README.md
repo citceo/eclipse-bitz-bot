@@ -42,6 +42,10 @@ cd eclipse-bitz-bot
 You’re now in the eclipse-bitz-bot folder, where the bot’s files are located.
 
 ### Step 2: Set Up a Virtual Environment
+
+ ```bash
+ apt install python3.12-venv
+```
 To keep the bot’s files organized, we’ll use a Python virtual environment. This is like a separate space for the bot’s tools.
 Create a virtual environment in the /root/bitz_env folder:
  ```bash
