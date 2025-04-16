@@ -29,17 +29,19 @@ Follow these steps to set up the Eclipse Bitz Bot on your computer. Each step is
 ### Step 1: Download the Bot’s Code
 1. Open your terminal (on Linux or macOS).
 2. Type the following command to download the bot’s code from GitHub:
-   ```bash
+
+  ```bash
    git clone https://github.com/citceo/eclipse-bitz-bot.git
  ```
 Move into the bot’s folder:
+
  ```bash
 
 cd eclipse-bitz-bot
  ```
 You’re now in the eclipse-bitz-bot folder, where the bot’s files are located.
 
-Step 2: Set Up a Virtual Environment
+### Step 2: Set Up a Virtual Environment
 To keep the bot’s files organized, we’ll use a Python virtual environment. This is like a separate space for the bot’s tools.
 Create a virtual environment in the /root/bitz_env folder:
  ```bash
@@ -53,7 +55,7 @@ source /root/bitz_env/bin/activate
  ```
 Your terminal prompt should change to show (bitz_env). This means the virtual environment is active. All commands from now on should be run in this environment.
 
-Step 3: Install the Bot’s Tools
+### Step 3: Install the Bot’s Tools
 The bot needs some Python tools to work. These are listed in a file called requirements.txt.
 While the virtual environment is active, run:
  ```bash
@@ -62,7 +64,7 @@ pip install -r requirements.txt
  ```
 Wait for the installation to finish. This might take a minute or two. You’ll see messages showing the tools being installed.
 
-Step 4: Create a Configuration File
+### Step 4: Create a Configuration File
 The bot needs some private information (like your Telegram bot token) to work. We’ll store this in a file called .env to keep it safe.
 Create a new file called .env in the eclipse-bitz-bot folder. You can use a text editor like nano:
  ```bash
@@ -90,7 +92,7 @@ In nano, press Ctrl + O, then Enter to save, and Ctrl + X to exit.
 
 Double-check that the .env file is in the eclipse-bitz-bot folder.
 
-Step 5: Check Your Setup
+### Step 5: Check Your Setup
 Before running the bot, make sure:
 Your Solana wallet file is at ~/.config/solana/id.json.
 
@@ -141,7 +143,7 @@ screen -r eclipse_bot
  ```
 This will reopen the screen session, showing the bot’s activity.
 
-Step 6: Stop the Bot (Optional)
+### Step 6: Stop the Bot (Optional)
 If you want to stop the bot:
 Reattach to the screen session: screen -r eclipse_bot.
 
