@@ -109,25 +109,25 @@ cd eclipse-mining-bot
 ```
 2. Set Up a Python Virtual Environment
 To isolate dependencies and avoid conflicts, create a Python virtual environment:
-bash
+```bash
 
 python3 -m venv /root/bitz_env
-
+```
 Activate the virtual environment:
-bash
+```bash
 
 source /root/bitz_env/bin/activate
-
+```
 Your terminal prompt should change to indicate the virtual environment (e.g., (bitz_env)).
 
 All subsequent commands in this section should be run within the virtual environment.
 
 3. Install Python Dependencies
 Install the required Python libraries specified in requirements.txt:
-bash
+```bash
 
 pip install -r requirements.txt
-
+```
 This installs:
 python-telegram-bot: For Telegram bot functionality.
 
@@ -137,13 +137,13 @@ python-dotenv: For loading environment variables from .env.
 
 4. Configure Environment Variables
 Create a .env file in the project root (eclipse-mining-bot/) to store sensitive information:
-plaintext
+```plaintext
 
 BOT_TOKEN=your_telegram_bot_token
 CHAT_ID=your_telegram_chat_id
 WALLET_ADDRESS=your_wallet_public_key
 RPC_URL=https://mainnetbeta-rpc.eclipse.xyz
-
+```
 BOT_TOKEN: Obtain from BotFather by creating a new bot.
 
 CHAT_ID: Find by sending a message to your bot and checking bitz_bot.log for the chat ID, or use a bot like @userinfobot.
@@ -168,22 +168,22 @@ Running the Bot
 To ensure the bot remains active after closing the terminal, run it in a Screen session within the Python virtual environment.
 1. Activate the Virtual Environment
 If not already active, activate the virtual environment:
-bash
+```bash
 
 source /root/bitz_env/bin/activate
-
+```
 2. Start a Screen Session
 Create a new Screen session named eclipse_bot:
-bash
+```bash
 
 screen -S eclipse_bot
-
+```
 3. Run the Bot
 Execute the bot script:
 bash
-
+```
 python bot.py
-
+```
 The bot will initialize, connect to Telegram, and wait for commands.
 4. Detach from Screen
 To keep the bot running in the background, detach from the Screen session:
@@ -193,24 +193,24 @@ You’ll return to your terminal, and the bot will continue running in the eclip
 
 5. Reattach to Screen
 To check on the bot or stop it:
-bash
+```bash
 
 screen -r eclipse_bot
-
+```
 To stop the bot, press Ctrl + C within the Screen session.
 
 6. Stop the Screen Session
 To completely terminate the Screen session:
-bash
+```bash
 
 screen -S eclipse_bot -X quit
-
+```
 7. Deactivate the Virtual Environment (Optional)
 If you no longer need the virtual environment in your current terminal session:
-bash
+```bash
 
 deactivate
-
+```
 Using the Bot
 Once the bot is running, interact with it via Telegram:
 Open Telegram and send the /start command to your bot.
@@ -234,12 +234,12 @@ RPC: Change the RPC URL by entering a new URL (e.g., https://eclipse.helius-rpc.
 
 Example Workflow
 Activate the virtual environment and start the bot:
-bash
+```bash
 
 source /root/bitz_env/bin/activate
 screen -S eclipse_bot
 python bot.py
-
+```
 Detach from the Screen session (Ctrl + A + D).
 
 In Telegram, send /start and use the Bitz Collect button to start mining.
@@ -278,19 +278,19 @@ If Bitz CLI commands (e.g., bitz account) take too long, increase the max_runtim
 
 Virtual Environment Errors:
 Ensure dependencies are installed in the virtual environment:
-bash
+```bash
 
 source /root/bitz_env/bin/activate
 pip install -r requirements.txt
-
+```
 If the environment is corrupted, recreate it:
-bash
+```bash
 
 rm -rf /root/bitz_env
 python3 -m venv /root/bitz_env
 source /root/bitz_env/bin/activate
 pip install -r requirements.txt
-
+```
 Security Notes
 Protect Sensitive Files:
 Never share your .env file or Solana keypair (~/.config/solana/id.json). These contain critical information.
@@ -311,20 +311,20 @@ We welcome contributions to enhance the Eclipse Mining Bot! To contribute:
 Fork the repository.
 
 Create a feature branch:
-bash
+```bash
 
 git checkout -b feature/your-feature
-
+```
 Make changes and commit:
-bash
+```bash
 
 git commit -m "Add your feature"
-
+```
 Push to your fork:
-bash
+```bash
 
 git push origin feature/your-feature
-
+```
 Open a pull request on GitHub, describing your changes in detail.
 
 Please ensure your code adheres to the existing style and includes updates to documentation where necessary.
