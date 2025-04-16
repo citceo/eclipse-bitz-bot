@@ -47,7 +47,7 @@ RPC_URL: One of the Eclipse RPC URLs (e.g., https://mainnetbeta-rpc.eclipse.xyz)
 Ensure the following:
 The Solana keypair exists at ~/.config/solana/id.json.
 
-Your wallet has at least 0.005 ETH.
+Your wallet has at least 0.0005 ETH.
 
 The Bitz CLI is installed and accessible via the bitz command.
 
