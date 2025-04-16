@@ -1,8 +1,0 @@
-# .gitignore
-.env
-bitz_bot.log
-venv/
-__pycache__/
-*.pyc
-*.log
-*.json
