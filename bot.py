@@ -17,13 +17,7 @@ load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
 WALLET_ADDRESS = os.getenv("WALLET_ADDRESS")
-
-# Global variable for RPC
-RPC_URL = os.getenv("RPC_URL", "https://mainnetbeta-rpc.eclipse.xyz")
-
-# Validate environment variables
-if not all([BOT_TOKEN, CHAT_ID, WALLET_ADDRESS]):
-    raise ValueError("Missing required environment variables. Please set BOT_TOKEN, CHAT_ID, and WALLET_ADDRESS in .env file.")
+RPC_URL = os.getenv("RPC_URL", "https://mainnetbeta-rpc.eclipse.xyz")  # Default RPC URL for example
 
 # Setup logging
 logging.basicConfig(
@@ -120,8 +114,8 @@ def check_eth_balance():
         match = re.search(r'(\d+\.\d+)\s*ETH', output)
         if match:
             balance = float(match.group(1))
-            if balance < 0.005:
-                return False, f"Your ETH balance ({balance}) is less than 0.005. Please top up your wallet."
+            if balance < 0.0005:
+                return False, f"Your ETH balance ({balance}) is less than 0.0005. Please top up your wallet."
             return True, f"Sufficient balance: {balance} ETH"
         return False, f"Unable to check balance. Output: {output}"
     except Exception as e:
@@ -147,7 +141,6 @@ def filter_claim_output(output):
     lines = output.split('\n')
     filtered_lines = []
     for line in lines:
-        # Keep only lines that contain the claim amount or are relevant
         if 'You are about to claim' in line:
             filtered_lines.append(line.strip())
     return '\n'.join(filtered_lines) or output
@@ -176,7 +169,6 @@ def format_bitz_account_output(output):
                 elif current_section == 'proof':
                     proof_info[key] = value
 
-    # Formatted output
     formatted_output = (
         "📊 **Account Information** 📊\n"
         f"🔑 **Address**: `{account_info.get('Address', 'Unknown')}`\n"
@@ -195,7 +187,6 @@ async def handle_text(update, context):
     if context.user_data.get("awaiting_rpc"):
         global RPC_URL
         new_rpc = update.message.text.strip()
-        # Simple link validation
         if not new_rpc.startswith("http"):
             await update.message.reply_text("Please enter a valid link (starting with http or https).")
             return
@@ -293,7 +284,7 @@ async def button_handler(update, context):
         context.user_data["awaiting_rpc"] = True
         await context.bot.send_message(
             chat_id=CHAT_ID,
-            text=f"Current RPC link: {RPC_URL}\nPlease enter the new RPC link (e.g., https://mainnetbeta-rpc.eclipse.xyz):"
+            text=f"Current RPC link: {RPC_URL}\nPlease enter the new RPC link (e.g., https://mainnetbeta-rpc.example.com):"
         )
 
 # Function to send the button menu
@@ -325,8 +316,8 @@ async def start_command(update, context):
         text=(
             "Welcome to your Eclipse Mining Assistant! 🌌\n"
             "Select an option below to manage your wallet and mining:\n"
-            "Support: https://discord.gg/eclipse-fnd (#powpow)\n"
-            "X: https://x.com/0xAsta2025"
+            "Support: https://discord.gg/example-support\n"
+            "X: https://x.com/example-user"
         ),
         reply_markup=reply_markup
     )
@@ -339,4 +330,5 @@ def main():
     application.run_polling(allowed_updates=['message', 'callback_query'])
 
 if __name__ == '__main__':
+    main()
     main()
