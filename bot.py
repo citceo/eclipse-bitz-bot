@@ -17,7 +17,7 @@ load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
 WALLET_ADDRESS = os.getenv("WALLET_ADDRESS")
-RPC_URL = os.getenv("RPC_URL", "https://mainnetbeta-rpc.eclipse.xyz")  # Default RPC URL for example
+RPC_URL = os.getenv("RPC_URL", "https://mainnetbeta-rpc.eclipse.xyz")  # Default RPC URL
 
 # Setup logging
 logging.basicConfig(
@@ -284,7 +284,7 @@ async def button_handler(update, context):
         context.user_data["awaiting_rpc"] = True
         await context.bot.send_message(
             chat_id=CHAT_ID,
-            text=f"Current RPC link: {RPC_URL}\nPlease enter the new RPC link (e.g., https://mainnetbeta-rpc.example.com):"
+            text=f"Current RPC link: {RPC_URL}\nPlease enter the new RPC link (e.g., https://mainnetbeta-rpc.eclipse.xyz):"
         )
 
 # Function to send the button menu
@@ -316,8 +316,8 @@ async def start_command(update, context):
         text=(
             "Welcome to your Eclipse Mining Assistant! 🌌\n"
             "Select an option below to manage your wallet and mining:\n"
-            "Support: https://discord.gg/example-support\n"
-            "X: https://x.com/example-user"
+            "Support: https://discord.gg/eclipse-fnd\n"
+            "X: https://x.com/EclipseFND"
         ),
         reply_markup=reply_markup
     )
@@ -330,5 +330,4 @@ def main():
     application.run_polling(allowed_updates=['message', 'callback_query'])
 
 if __name__ == '__main__':
-    main()
     main()
