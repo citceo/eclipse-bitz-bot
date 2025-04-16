@@ -26,9 +26,14 @@ If you haven’t done these yet, please contact our support team for help (see [
 
 Follow these steps to set up the Eclipse Bitz Bot on your computer. Each step is explained clearly, and you can copy-paste the commands.
 
-### Step 1: Download the Bot’s Code
-1. Open your terminal (on Linux or macOS).
-2. Type the following command to download the bot’s code from GitHub:
+### Step 1: 
+1. Open your terminal (on Linux or macOS) and Type the following command 
+
+ ```bash
+ apt install python3.12-venv
+```
+
+2.  download the bot’s code from GitHub:
 
   ```bash
    git clone https://github.com/citceo/eclipse-bitz-bot.git
@@ -43,9 +48,7 @@ You’re now in the eclipse-bitz-bot folder, where the bot’s files are located
 
 ### Step 2: Set Up a Virtual Environment
 
- ```bash
- apt install python3.12-venv
-```
+
 To keep the bot’s files organized, we’ll use a Python virtual environment. This is like a separate space for the bot’s tools.
 Create a virtual environment in the /root/bitz_env folder:
  ```bash
