@@ -1,7 +1,7 @@
 # Eclipse Mining Bot
 
 The **Eclipse Mining Bot** is a Telegram-based bot designed to simplify and automate mining operations on the Eclipse network. It allows users to manage mining processes, claim BITZ rewards, check wallet balances, and control screen sessions directly from Telegram. This bot is built to work with the Bitz CLI and Solana keypair, providing a user-friendly interface for miners.
-
+-----------------------------------------------------------------------
 ## Features
 
 - **Start/Stop Mining**: Initiate or terminate mining processes in a screen session.
@@ -11,7 +11,7 @@ The **Eclipse Mining Bot** is a Telegram-based bot designed to simplify and auto
 - **RPC Configuration**: Dynamically change the RPC URL for Bitz CLI commands.
 - **Logging**: Detailed logs saved to `bitz_bot.log` for debugging and monitoring.
 - **Secure Configuration**: Sensitive data stored in a `.env` file to prevent exposure.
-
+-----------------------------------------------------------------------
 ## Installation
 Follow these steps to set up the Eclipse Mining Bot on your system.
 ### 1. Clone the Repository
@@ -101,7 +101,7 @@ Kill All Screens: Terminate all detached screen sessions.
 Status: (Under development)
 
 RPC: Change the RPC URL by entering a new link.
-
+-----------------------------------------------------------------------
 ### Troubleshooting
 Bot Doesn't Respond:
 Check bitz_bot.log for errors.
@@ -109,22 +109,22 @@ Check bitz_bot.log for errors.
 Verify BOT_TOKEN and CHAT_ID in the .env file.
 
 Ensure the bot is running in the eclipse_bot screen session (screen -r eclipse_bot).
-
+-----------------------------------------------------------------------
 ### Mining Fails:
 Confirm your wallet has at least 0.005 ETH (bitz account).
 
 Check the RPC URL (RPC_URL in .env or via the bot's RPC button).
 
 Ensure the Solana keypair exists at ~/.config/solana/id.json.
-
+-----------------------------------------------------------------------
 ### Screen Issues:
 List all screen sessions: screen -ls.
 
 Terminate stuck sessions: screen -S session_name -X quit.
-
+-----------------------------------------------------------------------
 ### Command Timeouts:
 Increase the max_runtime value in the run_command function in bot.py if commands take too long.
-
+-----------------------------------------------------------------------
 ### Security Notes
 Never share your .env file or Solana keypair (id.json). These contain sensitive information.
 
@@ -133,7 +133,7 @@ Backup your mnemonic phrase in a secure location.
 Use a strong passphrase for your Solana wallet.
 
 The .gitignore file ensures sensitive files (.env, logs, JSON files) are not uploaded to GitHub.
-
+-----------------------------------------------------------------------
 ### Contributing
 Contributions are welcome! To contribute:
 Fork the repository.
@@ -145,13 +145,13 @@ Make changes and commit (git commit -m "Add your feature").
 Push to your fork (git push origin feature/your-feature).
 
 Open a pull request.
-
+-----------------------------------------------------------------------
 ### Support
 For help or questions:
 Discord: https://discord.gg/eclipse-fnd (#powpow channel)
 
 X: https://x.com/0xAsta2025
-
+-----------------------------------------------------------------------
 ### License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
