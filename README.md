@@ -12,21 +12,21 @@ The **Eclipse Mining Bot** is a Telegram-based bot designed to simplify and auto
 - **Logging**: Detailed logs saved to `bitz_bot.log` for debugging and monitoring.
 - **Secure Configuration**: Sensitive data stored in a `.env` file to prevent exposure.
 
-Installation
+## Installation
 Follow these steps to set up the Eclipse Mining Bot on your system.
-1. Clone the Repository
+### 1. Clone the Repository
 ```bash
 
 git clone https://github.com/your-username/eclipse-mining-bot.git
 cd eclipse-mining-bot
 ```
-2. Install Python Dependencies
+### 2. Install Python Dependencies
 The bot requires Python 3.8+ and specific libraries. Install them using:
 ```bash
 
 pip install -r requirements.txt
 ```
-3. Configure Environment Variables
+### 3. Configure Environment Variables
 Create a .env file in the project root directory to store sensitive information:
 ```plaintext
 
@@ -43,7 +43,7 @@ WALLET_ADDRESS: Your Solana wallet's public key (from solana-keygen new).
 
 RPC_URL: One of the Eclipse RPC URLs (e.g., https://mainnetbeta-rpc.eclipse.xyz).
 
-4. Verify Setup
+### 4. Verify Setup
 Ensure the following:
 The Solana keypair exists at ~/.config/solana/id.json.
 
@@ -102,7 +102,7 @@ Status: (Under development)
 
 RPC: Change the RPC URL by entering a new link.
 
-Troubleshooting
+### Troubleshooting
 Bot Doesn't Respond:
 Check bitz_bot.log for errors.
 
@@ -110,22 +110,22 @@ Verify BOT_TOKEN and CHAT_ID in the .env file.
 
 Ensure the bot is running in the eclipse_bot screen session (screen -r eclipse_bot).
 
-Mining Fails:
+### Mining Fails:
 Confirm your wallet has at least 0.005 ETH (bitz account).
 
 Check the RPC URL (RPC_URL in .env or via the bot's RPC button).
 
 Ensure the Solana keypair exists at ~/.config/solana/id.json.
 
-Screen Issues:
+### Screen Issues:
 List all screen sessions: screen -ls.
 
 Terminate stuck sessions: screen -S session_name -X quit.
 
-Command Timeouts:
+### Command Timeouts:
 Increase the max_runtime value in the run_command function in bot.py if commands take too long.
 
-Security Notes
+### Security Notes
 Never share your .env file or Solana keypair (id.json). These contain sensitive information.
 
 Backup your mnemonic phrase in a secure location.
@@ -134,7 +134,7 @@ Use a strong passphrase for your Solana wallet.
 
 The .gitignore file ensures sensitive files (.env, logs, JSON files) are not uploaded to GitHub.
 
-Contributing
+### Contributing
 Contributions are welcome! To contribute:
 Fork the repository.
 
@@ -146,12 +146,12 @@ Push to your fork (git push origin feature/your-feature).
 
 Open a pull request.
 
-Support
+### Support
 For help or questions:
 Discord: https://discord.gg/eclipse-fnd (#powpow channel)
 
-X: https://x.com/EclipseFND
+X: https://x.com/0xAsta2025
 
-License
+### License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
