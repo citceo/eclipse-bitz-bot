@@ -9,7 +9,6 @@ import json
 import asyncio
 from dotenv import load_dotenv
 import os
-
 # Load environment variables
 load_dotenv()
 
@@ -141,6 +140,7 @@ def filter_claim_output(output):
     lines = output.split('\n')
     filtered_lines = []
     for line in lines:
+        # Keep only lines that contain the claim amount or are relevant
         if 'You are about to claim' in line:
             filtered_lines.append(line.strip())
     return '\n'.join(filtered_lines) or output
@@ -169,6 +169,7 @@ def format_bitz_account_output(output):
                 elif current_section == 'proof':
                     proof_info[key] = value
 
+    # Formatted output
     formatted_output = (
         "📊 **Account Information** 📊\n"
         f"🔑 **Address**: `{account_info.get('Address', 'Unknown')}`\n"
@@ -187,6 +188,7 @@ async def handle_text(update, context):
     if context.user_data.get("awaiting_rpc"):
         global RPC_URL
         new_rpc = update.message.text.strip()
+        # Simple link validation
         if not new_rpc.startswith("http"):
             await update.message.reply_text("Please enter a valid link (starting with http or https).")
             return
@@ -294,20 +296,20 @@ async def start_command(update, context):
         return
     keyboard = [
         [
-            telegram.InlineKeyboardButton("Start", callback_data="start"),
-            telegram.InlineKeyboardButton("Bitz Collect", callback_data="bitz_collect")
+            telegram.InlineKeyboardButton("🚀 Start", callback_data="start"),
+            telegram.InlineKeyboardButton("⛏️ Bitz Collect", callback_data="bitz_collect")
         ],
         [
-            telegram.InlineKeyboardButton("Bitz Claim", callback_data="bitz_claim"),
-            telegram.InlineKeyboardButton("Bitz Account", callback_data="bitz_account")
+            telegram.InlineKeyboardButton("💰 Bitz Claim", callback_data="bitz_claim"),
+            telegram.InlineKeyboardButton("📊 Bitz Account", callback_data="bitz_account")
         ],
         [
-            telegram.InlineKeyboardButton("Check Screen", callback_data="check_screen"),
-            telegram.InlineKeyboardButton("Kill All Screens", callback_data="kill_screens")
+            telegram.InlineKeyboardButton("🖥️ Check Screen", callback_data="check_screen"),
+            telegram.InlineKeyboardButton("🛑 Kill All Screens", callback_data="kill_screens")
         ],
         [
-            telegram.InlineKeyboardButton("Status", callback_data="wallet_status"),
-            telegram.InlineKeyboardButton("RPC", callback_data="rpc")
+            telegram.InlineKeyboardButton("❓ Status", callback_data="wallet_status"),
+            telegram.InlineKeyboardButton("🌐 RPC", callback_data="rpc")
         ]
     ]
     reply_markup = telegram.InlineKeyboardMarkup(keyboard)
@@ -316,8 +318,8 @@ async def start_command(update, context):
         text=(
             "Welcome to your Eclipse Mining Assistant! 🌌\n"
             "Select an option below to manage your wallet and mining:\n"
-            "Support: https://discord.gg/eclipse-fnd\n"
-            "X: https://x.com/EclipseFND"
+            "Support: https://discord.gg/eclipse-fnd (#powpow)\n"
+            "X: https://x.com/0xAsta2025"
         ),
         reply_markup=reply_markup
     )
