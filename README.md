@@ -135,60 +135,6 @@ You’ll see a message like [detached from ... eclipse_bot], and you’ll return
 
 The bot is now running in the background!
 
-Step 5: Check on the Bot Later
-To go back and see what the bot is doing:
- ```bash
-
-screen -r eclipse_bot
- ```
-This will reopen the screen session, showing the bot’s activity.
-
-### Step 6: Stop the Bot (Optional)
-If you want to stop the bot:
-Reattach to the screen session: screen -r eclipse_bot.
-
-Press Ctrl + C to stop the bot.
-
-Exit the screen session by typing exit or pressing Ctrl + D.
-
-To completely close the screen session:
- ```bash
-
-screen -S eclipse_bot -X quit
- ```
-Using the Bot
-Now that the bot is running, you can control it from Telegram:
-Start the Bot:
-Open Telegram and find your bot (the one you created with BotFather).
-
-Send the /start command.
-
-A menu with buttons will appear.
-
-What Each Button Does:
-Start: Checks if mining is already running.
-
-Bitz Collect: Starts mining in a background session called eclipse_bitz. Your wallet needs at least 0.0005 ETH.
-
-Bitz Claim: Claims your mined BITZ rewards (you’ll confirm before it happens).
-
-Bitz Account: Shows your wallet’s BITZ and ETH balances in a neat format.
-
-Check Screen: Lists all background sessions (like eclipse_bitz or eclipse_bot).
-
-Kill All Screens: Stops all background sessions (useful if something gets stuck).
-
-Status: (Not ready yet, says “Coming soon”).
-
-RPC: Lets you change the network connection by typing a new URL (e.g., https://mainnetbeta-rpc.eclipse.xyz).
-
-Example:
-Send /start, then click Bitz Collect to start mining.
-
-Click Bitz Account to check your balance.
-
-Use Bitz Claim to collect your rewards when ready
-
 ## Support
 If you get stuck or have questions:
 Discord: Join the Eclipse community at https://discord.gg/eclipse-fnd and check the #powpow channel.
