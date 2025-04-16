@@ -107,7 +107,7 @@ Download the bot’s source code from GitHub:
 git clone https://github.com/your-username/eclipse-mining-bot.git
 cd eclipse-mining-bot
 ```
-2. Set Up a Python Virtual Environment
+### 2. Set Up a Python Virtual Environment
 To isolate dependencies and avoid conflicts, create a Python virtual environment:
 ```bash
 
@@ -122,7 +122,7 @@ Your terminal prompt should change to indicate the virtual environment (e.g., (b
 
 All subsequent commands in this section should be run within the virtual environment.
 
-3. Install Python Dependencies
+### 3. Install Python Dependencies
 Install the required Python libraries specified in requirements.txt:
 ```bash
 
@@ -135,7 +135,7 @@ psutil: For process management.
 
 python-dotenv: For loading environment variables from .env.
 
-4. Configure Environment Variables
+### 4. Configure Environment Variables
 Create a .env file in the project root (eclipse-mining-bot/) to store sensitive information:
 ```plaintext
 
@@ -152,7 +152,7 @@ WALLET_ADDRESS: Your Solana wallet’s public key (from solana-keygen new).
 
 RPC_URL: One of the Eclipse RPC URLs (e.g., https://mainnetbeta-rpc.eclipse.xyz).
 
-5. Verify Setup
+### 5. Verify Setup
 Before running the bot, confirm:
 The Solana keypair exists at ~/.config/solana/id.json.
 
@@ -248,7 +248,7 @@ Monitor your balance with Bitz Account or claim rewards with Bitz Claim.
 
 Use Check Screen to view active sessions or Kill All Screens to reset mining processes.
 
-Troubleshooting
+##Troubleshooting
 Here are solutions to common issues you might encounter:
 Bot Doesn’t Respond:
 Check bitz_bot.log in the project directory for error messages (e.g., invalid BOT_TOKEN).
@@ -266,17 +266,17 @@ Check the RPC_URL in .env or update it via the RPC button.
 
 Verify the Solana keypair exists at ~/.config/solana/id.json.
 
-Screen Session Issues:
+### Screen Session Issues:
 List all Screen sessions: screen -ls.
 
 Terminate a stuck session: screen -S session_name -X quit.
 
 Use the Kill All Screens button to terminate all detached sessions.
 
-Command Timeouts:
+## Command Timeouts:
 If Bitz CLI commands (e.g., bitz account) take too long, increase the max_runtime parameter in the run_command function in bot.py.
 
-Virtual Environment Errors:
+### Virtual Environment Errors:
 Ensure dependencies are installed in the virtual environment:
 ```bash
 
@@ -291,7 +291,7 @@ python3 -m venv /root/bitz_env
 source /root/bitz_env/bin/activate
 pip install -r requirements.txt
 ```
-Security Notes
+## Security Notes
 Protect Sensitive Files:
 Never share your .env file or Solana keypair (~/.config/solana/id.json). These contain critical information.
 
@@ -303,10 +303,10 @@ Store your mnemonic phrase in a secure, offline location. Losing it will result 
 Use a Strong Passphrase:
 Set a strong passphrase for your Solana wallet to enhance security.
 
-Monitor Logs:
+## Monitor Logs:
 Regularly review bitz_bot.log for errors or suspicious activity.
 
-Contributing
+## Contributing
 We welcome contributions to enhance the Eclipse Mining Bot! To contribute:
 Fork the repository.
 
@@ -328,13 +328,13 @@ git push origin feature/your-feature
 Open a pull request on GitHub, describing your changes in detail.
 
 Please ensure your code adheres to the existing style and includes updates to documentation where necessary.
-Support
+## Support
 For assistance or questions, contact the Eclipse community:
 Discord: Join https://discord.gg/eclipse-fnd and visit the #powpow channel.
 
 X: Follow and DM https://x.com/0xAsta2025
  for support and updates.
 
-License
+## License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
